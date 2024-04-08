@@ -1,0 +1,11 @@
+__pycache__/
+prompts/__pycache__/
+vectorstore/db_faiss/*
+vectorstore/
+user_data/
+*.faiss
+*.pkl
+.env
+.DS_Store
+.png
+.jpg
