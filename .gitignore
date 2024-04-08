@@ -6,6 +6,6 @@ user_data/
 *.faiss
 *.pkl
 .env
-.DS_Store
-.png
-.jpg
+*.DS_Store
+*.png
+*.jpg
