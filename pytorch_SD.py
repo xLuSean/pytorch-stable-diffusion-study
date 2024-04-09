@@ -1,15 +1,20 @@
 # ref : https://edge.aif.tw/express-stable-diffusion/
-
+from dotenv import load_dotenv
+import os
 import torch
 
-device = "cpu"
+load_dotenv()
+
+# device = "cpu"
+device = os.getenv("DEVICE", default="cpu")
+print(device)
 
 prompt = ["RAW Photography,Snow-capped mountains, flowers and moos, sunrise,  sunrays, white clouds, lens flare, low wide angle, Canon EOS 5D Mark IV, masterpiece, 35mm photograph, film grain, award winning photography, vibrant use of light and shadow, vivid colors, high quality textures of materials, volumetric textures  perfect composition, dynamic play of light, rich colors, epic shot, perfectly quality, natural textures, high detail, high sharpness, high clarity, detailed ,photoshadow,  intricate details, 8k"]
 
 height = 512
 width = 512
 batch_size = 1
-generator = torch.manual_seed(31)
+generator = torch.manual_seed(42)
 
 # we are generating 64x64 images
 latents = torch.randn((batch_size, 4, height //8, width //8), generator = generator, )

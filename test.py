@@ -1,14 +1,22 @@
+from dotenv import load_dotenv
+import os
 from diffusers import StableDiffusionXLPipeline
 import torch
 import time
 
+load_dotenv()
+
 start_time = time.perf_counter()
+
+device = os.getenv("DEVICE", default="cpu")
+print(device)
 
 ## Load the pipeline in full-precision and place its model components on CUDA.
 # on apple silicon, using "mps" is recommended for better performance.
 pipe = StableDiffusionXLPipeline.from_pretrained(
-    "stabilityai/stable-diffusion-xl-base-1.0", torch_dtype=torch.bfloat16
-    ).to("cpu")
+    "stabilityai/stable-diffusion-xl-base-1.0"
+    , torch_dtype=torch.bfloat16
+    ).to(device)
 
 ## Run the attention ops without efficiency.
 pipe.unet.set_default_attn_processor()
