@@ -5,7 +5,6 @@ import torch
 
 load_dotenv()
 
-# device = "cpu"
 device = os.getenv("DEVICE", default="cpu")
 print(device)
 
